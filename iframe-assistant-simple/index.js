@@ -1,19 +1,49 @@
-$(document).ready(function() {
-    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-});
 
+// window.addEventListener('click', function(e){   
+//   if (document.getElementById('divIframe').contains(e.target) ){
+
+ 
+
+//   } else{
+//     hideFrame()
+//   }
+// });
+
+
+
+var iframe = false;
 
 function chatbot() {
 	document.getElementById("divIframe").innerHTML = 
-		'<div class="divHeaderIframe row"></div><a class="botonCerrarIframe" href="javascript:closeFrame();">'+
-			'<img class="testing" data-toggle="tooltip" data-placement="top" title="Cerrar" '+
-				'src="img/cerrar.png" width="30"></a>'+
-		'<iframe class="iframe" src="http://localhost:3000" '+
-			'frameborder="0"></iframe>';
+		'<div class="divHeaderIframe row"></div>'+
+			'<span id="botonMinIframe" onclick="hideFrame()">-</span>'+
+			'<img class="botonCerrarIframe" onclick="closeFrame()"'+
+				'src="img/cerrar.png" width="20">'+
+			'<iframe class="iframe" src="http://localhost:3000" '+
+				'frameborder="0"></iframe>';
+
+	document.getElementById('divIframe').style.display = 'block';	
+
+	iframe = true;
+
 }
 
 function closeFrame() {
-	$('[data-toggle="tooltip"]').tooltip("hide");
     document.getElementById("divIframe").innerHTML = '';
 }
 
+function hideFrame() {
+	if(iframe) {
+		document.getElementById('divIframe').style.display = 'none';		
+		iframe = false;
+
+		document.getElementById('imgChat').style.display = 'block';
+
+	}
+}
+
+function mostrarFrame() { 
+	document.getElementById('imgChat').style.display = 'none';
+	document.getElementById('divIframe').style.display = 'block';	
+	iframe = true;
+}
